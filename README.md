@@ -7,8 +7,8 @@ If you don't have `react-native-cli` installed, please get it installed by follo
 ### Clone this repo and install its dependencies
 
 ```bash
-git clone https://github.com/uiheros/react-native-redux-todo-list.git
-cd react-native-redux-todo-list
+git clone https://github.com/ykptke/react-native-asyncstorage-example.git
+cd react-native-asyncstorage-example
 npm install
 ```
 
