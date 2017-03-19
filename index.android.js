@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import DailyGoals from './src'
+import App from './src/App'
 
-AppRegistry.registerComponent('DailyGoals', () => DailyGoals);
+AppRegistry.registerComponent('DailyGoals', () => App);

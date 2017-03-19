@@ -1,54 +1,36 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
-import List from './List'
-import Loading from './Loading'
+import {
+  View,
+  StyleSheet
+} from 'react-native';
+import List from './List';
+import AddGoal from '../containers/AddGoal'
 
-const STORAGE_KEY = 'GOALS';
-
-export default class DailyGoals extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      currentGoals: [],
-      loading: true,
-    }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
   }
+})
 
+class DailyGoals extends Component {
   componentDidMount() {
-    this._loadInitialState().done();
+    this._initialData();
   }
 
-  async _loadInitialState() {
-    try {
-      const jsonData = await AsyncStorage.getItem(STORAGE_KEY);
-
-      if (jsonData) {
-        const currentGoals = JSON.parse(jsonData);
-
-        this.setState({
-          currentGoals,
-          loading: false,
-        });
-      }
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  async doInsert(goals) {
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(goals));
+  _initialData() {
+    this.props.fetchAllData();
   }
 
   render() {
-    const { loading, currentGoals } = this.state;
-    if (loading) {
-      return <Loading />;
-    }
+    const { goals } = this.props;
 
     return (
-      <List doInsert={this.doInsert} currentGoals={currentGoals} />
+      <View style={styles.container}>
+        <AddGoal />
+        <List goals={goals}/>
+      </View>
     );
   }
 }
+
+export default DailyGoals;
